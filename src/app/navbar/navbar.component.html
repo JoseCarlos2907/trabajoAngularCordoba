@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <img class="escudoBanderaCordoba" src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Escudo_de_la_Diputaci%C3%B3n_de_C%C3%B3rdoba.png" alt="Hola">
+    <span routerLink="/main" class="name">Córdoba</span>
+    <span class="example-spacer"></span>
+
+    <!-- Si no está logeado -->
+    <button *ngIf="!getLoggedEmail()" mat-button [routerLink]="['/sign-up']">Registrarse</button>
+    <button *ngIf="!getLoggedEmail()" mat-button [routerLink]="['/login']">Login</button>
+
+    <!-- Si es admin -->
+    <button *ngIf="isAdmin && getLoggedEmail()" mat-button [routerLink]="['/manage-places']">Adminsitrar lugares</button>
+    
+    <!-- Si está logeado -->
+    <button *ngIf="getLoggedEmail()" mat-button (click)="logout()" >Salir({{ loggedUserFirstName }})</button>
+
+</mat-toolbar>

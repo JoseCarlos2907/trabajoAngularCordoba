@@ -1,0 +1,36 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+span{
+    font-size: 26px;
+    margin: 2%;
+}
+
+mat-toolbar{
+    background-color: #611B6E;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left, .right {
+  flex: 1;
+}
+
+.center {
+  flex: 2;
+  text-align: center;
+}

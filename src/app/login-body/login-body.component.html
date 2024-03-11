@@ -1,0 +1,26 @@
+<div id="mainDiv">
+    <h2>Iniciar sesión</h2>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()" class="form">
+        <mat-form-field class="example-form-field">
+            <mat-label>Correo</mat-label>
+            <input matInput type="email" formControlName="email">
+            <button matSuffix mat-icon-button aria-label="Close">
+                <mat-icon>mail</mat-icon>
+            </button>
+            <mat-error *ngIf="loginForm.get('email')?.hasError('email') && !loginForm.get('email')?.hasError('required')">
+                Por favor, introduzca un correo válido 
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+                Debe indicar la contraseña del usuario
+            </mat-error>
+        </mat-form-field>
+    
+        <button mat-stroked-button cdkFocusInitial color="primary" type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+    </form>
+</div>

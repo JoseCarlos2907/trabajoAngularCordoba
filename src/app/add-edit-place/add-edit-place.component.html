@@ -1,0 +1,93 @@
+<h2 mat-dialog-title>Registro de usuario</h2>
+<form [formGroup]="addEditForm" (ngSubmit)="submitAddEditForm()">
+    <mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="fill">
+                <mat-label>Indique el ID</mat-label>
+                <input matInput placeholder="ID" formControlName="id">
+                <mat-error *ngIf="addEditForm.get('id')?.hasError('required')">
+                    Debe indicar el ID
+                </mat-error>
+            </mat-form-field>
+             <span class="example-spacer"></span>
+            <mat-form-field appearance="fill">
+                <mat-label>Indique el nombre</mat-label>
+                <input matInput placeholder="Nombre" formControlName="name">
+                <mat-error *ngIf="addEditForm.get('name')?.hasError('required')">
+                    Debe indicar el Nombre
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="fill">
+                <mat-label>Indique el párrafo pequeño</mat-label>
+                <input matInput placeholder="Párrafo pequeño" formControlName="smallParagraph">
+                <mat-error *ngIf="addEditForm.get('smallParagraph')?.hasError('required')">
+                    Debe indicar el párrafo de presentación
+                </mat-error>
+            </mat-form-field>
+             <span class="example-spacer"></span>
+            <mat-form-field appearance="fill">
+                <mat-label>Indique el texto de contenido</mat-label>
+                <input matInput placeholder="Contenido" formControlName="allParagraphs">
+                <mat-error *ngIf="addEditForm.get('allParagraphs')?.hasError('required')">
+                    Debe indicar el contenido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="fill">
+                <mat-label>Indique el enlace de la imagen 1</mat-label>
+                <input matInput placeholder="Enlace imagen 1" formControlName="image0">
+                <mat-error *ngIf="addEditForm.get('image0')?.hasError('required')">
+                    Debe indicar el enlace de la primera imagen
+                </mat-error>
+            </mat-form-field>
+             <span class="example-spacer"></span>
+            
+            <mat-form-field appearance="fill">
+                <mat-label>Indique el enlace de la imagen 2</mat-label>
+                <input matInput placeholder="Enlace imagen 2" formControlName="image1">
+                <mat-error *ngIf="addEditForm.get('image1')?.hasError('required')">
+                    Debe indicar el enlace de la segunda imagen
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="fill">
+                <mat-label>Indique el enlace de la imagen 3</mat-label>
+                <input matInput placeholder="Enlace imagen 3" formControlName="image2">
+                <mat-error *ngIf="addEditForm.get('image2')?.hasError('required')">
+                    Debe indicar el enlace de la tercera imagen
+                </mat-error>
+            </mat-form-field>
+             <span class="example-spacer"></span>
+            
+            <mat-form-field appearance="fill">
+                <mat-label>Indique el enlace de la imagen 4</mat-label>
+                <input matInput placeholder="Enlace imagen 4" formControlName="image3">
+                <mat-error *ngIf="addEditForm.get('image3')?.hasError('required')">
+                    Debe indicar el enlace de la cuarta imagen
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="fill">
+                <mat-label>Indique el enlace de la imagen 5</mat-label>
+                <input matInput placeholder="Enlace imagen 5" formControlName="image4">
+                <mat-error *ngIf="addEditForm.get('image4')?.hasError('required')">
+                    Debe indicar el enlace de la quinta imagen
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="action">
+        <button mat-button mat-dialog-close type="button" [mat-dialog-close]="false" color="accent">Cancelar</button>
+        <button mat-button mat-dialog-close cdkFocusInitial type="submit" color="primary">{{ data ? 'Guardar cambios' : 'Agregar lugar' }}</button>
+    </mat-dialog-actions>
+</form>
+

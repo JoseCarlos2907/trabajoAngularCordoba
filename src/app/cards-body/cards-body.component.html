@@ -1,0 +1,37 @@
+
+<div class="presentation">
+    <h1>Córdoba</h1>
+    <p>Córdoba es una ciudad y municipio español en Andalucía, capital de la provincia homónima, situada en una depresión a orillas del Guadalquivir y al pie de Sierra Morena. Alberga una población de 319 515 habitantes en 2022, siendo la tercera ciudad más grande y poblada de Andalucía tras Sevilla y Málaga, y la duodécima de España. Su área metropolitana comprende los municipios de la capital junto con los de Almodóvar del Río, Guadalcázar, La Carlota, Obejo, Villafranca de Córdoba, Villaharta y Villaviciosa de Córdoba, albergando una población total de 354.202 habitantes en 2022, la vigésima tercera más poblada de España.</p>
+</div>
+  <mat-grid-list cols="3" rowHeight="3:3">
+    <div *ngFor="let place of places">
+      <mat-grid-tile>
+        <mat-card class="card">
+          <mat-card-header>
+            <mat-card-title>{{place.name}}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src="{{ place.images[0] }}">
+          <mat-card-content>
+            <p>
+              {{place.smallParagraph}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions class="bottomOptions">
+            <button mat-button routerLink="/places/{{place.id}}" class="leerMasButton">+Leer Más</button>
+              <ng-container *ngIf="place.rating.length > 0; else nvRating">
+                <div id="ratingDiv">
+                  <h3> {{ getRatingAverage(place) }}</h3>
+                  <mat-icon style="color: yellow;">star</mat-icon>
+                </div>
+              </ng-container> 
+              <ng-template #nvRating>
+                <div id="ratingDiv">
+                  <h3>NV</h3>
+                  <mat-icon style="color: grey;">star</mat-icon>
+                </div>
+              </ng-template>   
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </div>
+  </mat-grid-list>

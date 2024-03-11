@@ -1,0 +1,97 @@
+<div id="mainDiv">
+    <h1>{{ place.name }}</h1>
+
+    <div id="imagesDiv">
+        <div class="bigImageDiv">
+            <img mat-card-image src="{{ selectedImage }}" class="mainImage">
+        </div>
+
+        <div id="smallImages">
+            <mat-grid-list cols="3" rowHeight="3:3">
+                <mat-grid-tile *ngFor="let image of place.images; index as i">
+                    <img src="{{ place.images[i] }}" (click)="changeMainImage(i)" class="smallImage">
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </div>
+    
+
+    <div id="paragraphs">
+        <p>
+            {{ place.allParagraphs }}
+        </p>
+    </div>
+
+
+    <ng-container *ngIf="allRatings.length > 0; else nvRating">
+        <div id="ratingDiv">
+          <h3 class="bold"> Valoración: </h3>
+          <h3 class="bold"> {{ getRatingAverage() }} </h3>
+          <mat-icon style="color: yellow;">star</mat-icon>
+        </div>
+      </ng-container>
+      <ng-template #nvRating>
+        <div id="ratingDiv">
+          <h3 class="bold"> Valoración: </h3>
+          <h3 class="bold"> NV </h3>
+          <mat-icon style="color: grey;">star</mat-icon>
+        </div>
+      </ng-template>
+
+      <hr>
+
+    <div id="comments">
+        <h3 class="bold">Comentarios</h3>
+        <div *ngIf="(loggedIn == true && commentsOfUser.length > 0) || loggedIn == false; else noUserComments">
+            <div *ngFor="let rating of allRatings" class="comment">
+                <div class="commentRating">
+                    <p> {{ rating.rating }} </p>
+                    <mat-icon style="color: yellow;">star</mat-icon>
+                </div>
+                <p> {{ rating.comment }} </p>
+            </div>
+            <div *ngIf="allRatings.length < 1">
+                <p>No hay comentarios disponibles.</p>
+            </div>
+        </div>
+        <ng-template #noUserComments>
+            <div *ngIf="loggedIn == true && commentsOfUser.length < 1; else noComments">
+                <div *ngFor="let rating of allRatings" class="comment">
+                    <div class="commentRating">
+                        <p> {{ rating.rating }} </p>
+                        <mat-icon style="color: yellow;">star</mat-icon>
+                    </div>
+                    <p> {{ rating.comment }} </p>
+                </div>
+                <form [formGroup]="commentForm" class="commentForm" (submit)="submitCommentForm()">
+                    <mat-form-field>
+                      <mat-label>Valoración</mat-label>
+                      <mat-select formControlName="rating">
+                        <mat-option *ngFor="let rating of ratings" [value]="rating">
+                          {{ rating }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="commentForm.get('rating')?.hasError('required')">
+                        Debe indicar una valoración válida
+                      </mat-error>
+                    </mat-form-field>
+          
+                    <mat-form-field>
+                      <mat-label>Escriba su opinión</mat-label>
+                      <input matInput type="text" placeholder="Opinión" formControlName="comment">
+                      <mat-error *ngIf="commentForm.get('comment')?.hasError('required')">
+                        Debe escribir su opinión
+                      </mat-error>
+                    </mat-form-field>
+          
+                    <mat-dialog-actions>
+                      <button mat-stroked-button cdkFocusInitial color="primary" type="submit"
+                        [disabled]="commentForm.invalid">Enviar valoración</button>
+                    </mat-dialog-actions>
+                  </form>
+            </div>
+            <ng-template #noComments>
+                <p>No hay comentarios disponibles.</p>
+            </ng-template>
+        </ng-template>
+</div>
